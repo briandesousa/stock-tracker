@@ -1,5 +1,10 @@
 {
   "name": "stock-tracker",
+  "author": {
+    "name": "Brian De Sousa",
+    "email": "briandesousa1@gmail.com",
+    "url": "https://briandesousa.net"
+  },
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001",
