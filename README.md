@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Stock Tracker App
+
+A simple app for tracking purchased stock performance over time.
+
+Planned capabilities include:
+
+* Tracking one or more stock purchases including stock symbol, purchase price and quantity
+* Retrieving stock information from third-party API (ex. current price, dividend information)
+* Calculating market value, capital gain/loss percentage
+* Calculating net gain/loss including received dividends
+* Dividend projections
+
+## Architecture
+
+* Front-end UI is built with React.
+* Back-end server and API is built with Express on Node.js.
+* Database is ???.
+* **In development**, hot reload is supported on front-end and back-end changes.
+* **In production**, the React app is served as a static build from the Express server (no server-side rendering) alongside the API to avoid cross-origin resource sharing.
 
 ## Available Scripts
 
@@ -6,63 +24,35 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* Runs the front-end in development mode with hot reload when changes are made.
+* Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Any paths requested by the front-end app that do not resolve are proxies to the back-end server.
+* You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Launches the front-end test runner in interactive watch mode.
+* See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Builds the app for production to the `build` folder.
+* It correctly bundles React in production mode and optimizes the build for the best performance.
+* The build is minified and the filenames include the hashes.
+* See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* **This is a one-way operation. Once you `eject`, you can’t go back!**
+* If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project and copy all configuration files and transitive dependencies into the project so you have ful control. 
+* Read more about ejecting [here](https://create-react-app.dev/docs/available-scripts#npm-run-eject).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `npm run server`
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Runs the backend Express server using with hot reload when changes are made.
+* Open  [http://localhost:3001/api](http://localhost:3001/api) to test the back-end.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `npm run all`
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* Runs the front-end and back-end processes together with hot reload when either front or back-end changes are made.
+* No cross-origin resource sharing required thanks to the proxy setup.
