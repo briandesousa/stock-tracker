@@ -6,11 +6,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/api/user', function (req, res) {
+app.get('/api/user/:username', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({
         userId: Math.floor(Math.random() * Math.floor(100)),
-        userName: req.query.name || 'briandesousa',
+        username: req.params.username,
         firstName: 'Brian',
         lastName: 'De Sousa',
     }));
@@ -33,7 +33,7 @@ app.get('/api/user/:username/stocks', function (req, res) {
             }
         },
         {
-            symol: 'TD',
+            symbol: 'TD',
             book: {
                 value: '72.00',
                 count: 20
