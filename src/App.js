@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Button from 'react-bootstrap/Button';
 
 class App extends React.Component {
 
@@ -17,10 +19,14 @@ class App extends React.Component {
       .then(state => this.setState(state));
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>{this.state.greeting}</p>
-        </header>
+      <div>
+        <Jumbotron>
+          <h1>{this.state.greeting}</h1>
+          <p>Welcome to the Stock Tracker App!</p>
+          <p>
+            <Button variant="primary">Add a Stock</Button>
+          </p>
+        </Jumbotron>
       </div>
     )
   }
