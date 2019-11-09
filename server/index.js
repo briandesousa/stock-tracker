@@ -6,17 +6,48 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/api', function (req, res) {
-    let name = req.query.name || 'World';
+app.get('/api/user', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({
+        userId: Math.floor(Math.random() * Math.floor(100)),
+        userName: req.query.name || 'briandesousa',
+        firstName: 'Brian',
+        lastName: 'De Sousa',
+    }));
+});
 
-    if (name === 'Brian') {
-        name = `Mr. ${name}`;
-    } else if (name === 'Mary') {
-        name = `Mrs. ${name}`;
+app.get('/api/user/:username/stocks', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+
+    let stocks = [];
+    if (req.params.username === 'briandesousa') {
+        stocks = [{
+            symbol: 'ENB',
+            book: {
+                value: '40.00',
+                count: 100
+            },
+            market: {
+                value: '45.10',
+                valueDate: '31/10/2019'
+            }
+        },
+        {
+            symol: 'TD',
+            book: {
+                value: '72.00',
+                count: 20
+            },
+            market: {
+                value: '75.40',
+                valueDate: '31/10/2019'
+            }
+        }];
     }
 
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+    res.send(JSON.stringify({
+        'stocks': stocks
+    }));
 });
 
 app.get('/', function (req, res) {
