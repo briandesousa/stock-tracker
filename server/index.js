@@ -6,6 +6,12 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'build')));
 
+// server the React UI
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
+// get user information
 app.get('/api/user/:username', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({
@@ -16,6 +22,7 @@ app.get('/api/user/:username', function (req, res) {
     }));
 });
 
+// get portfolio information for a given user
 app.get('/api/user/:username/stocks', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
 
@@ -58,10 +65,24 @@ app.get('/api/user/:username/stocks', function (req, res) {
     }));
 });
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
+// get individual stock information for a given user and stock
+app.get('/api/user/:username/stock/:symbol', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
 
+    res.send(JSON.stringify({
+        symbol: req.params.symbol,
+        marketValue: '45.03',
+        nextDividendDate: '2019-11-01',
+        nextDividendAmount: '0.67',
+        dividendPayoutHistory: [{
+            dividendDate: '2019-08-01',
+            dividendAmount: '34.00'
+        }, {
+            dividendDate: '2019-05-01',
+            dividendAmount: '24.00'
+        }]
+    }));
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
