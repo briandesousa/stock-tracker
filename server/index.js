@@ -22,25 +22,33 @@ app.get('/api/user/:username/stocks', function (req, res) {
     let stocks = [];
     if (req.params.username === 'briandesousa') {
         stocks = [{
+            name: "Enbridge Inc.",
             symbol: 'ENB',
+            count: 100,
+            totalDividends: '100.00',
             book: {
-                value: '40.00',
-                count: 100
+                value: '4260.00',
+                purchaseDate: '2018-10-31'
             },
             market: {
-                value: '45.10',
-                valueDate: '31/10/2019'
+                value: '4503.10',
+                valueWithDividends: '4603.10',
+                valueDate: '2019-10-31'
             }
         },
         {
+            name: 'Toronto-Dominion Bank',
             symbol: 'TD',
+            count: 20,
+            totalDividends: '100.00',
             book: {
-                value: '72.00',
-                count: 20
+                value: '7285.00',
+                purchaseDate: '2018-10-31'
             },
             market: {
-                value: '75.40',
-                valueDate: '31/10/2019'
+                value: '7563.40',
+                valueWithDividends: '7663.40',
+                valueDate: '2019-10-31'
             }
         }];
     }

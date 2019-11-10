@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
-import StockList from './components/stock-list/StockList';
+import StockCard from './components/stock-card/StockCard';
+import CardColumns from 'react-bootstrap/CardColumns';
 
 class App extends React.Component {
 
@@ -27,6 +28,13 @@ class App extends React.Component {
   }
 
   render() {
+    let stockCards = [];
+    this.state.stocks.forEach(stock => {
+      stockCards.push(
+        <StockCard stock={stock} key={stock.symbol}></StockCard>
+      );
+    });
+
     return (
       <div>
         <Header
@@ -35,7 +43,9 @@ class App extends React.Component {
           lastName={this.state.lastName}>
         </Header>
         <div>
-          <StockList stocks={this.state.stocks}></StockList>
+          <CardColumns className="p-3">
+            {stockCards}
+          </CardColumns>
         </div>
       </div>
     )
