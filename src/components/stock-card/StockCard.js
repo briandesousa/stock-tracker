@@ -36,7 +36,7 @@ class StockCard extends React.Component {
                     </Card.Title>
                     <Card.Subtitle>
                         {marketValue}
-                        <span class="text-muted"> as of {valueDate}</span>
+                        <span className="text-muted"> as of {valueDate}</span>
                     </Card.Subtitle>
                 </Card.Header>
                 <Card.Body style={{ padding: '0px' }}>
