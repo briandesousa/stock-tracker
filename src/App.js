@@ -1,8 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+
 import './App.css';
 import Header from './components/header/Header';
-import StockCard from './components/stock-card/StockCard';
-import CardColumns from 'react-bootstrap/CardColumns';
+import StockCardGroup from './components/stock-card-group/StockCardGroup';
+import StockDetail from './components/stock-detail/StockDetail';
+
 
 class App extends React.Component {
 
@@ -28,27 +32,25 @@ class App extends React.Component {
   }
 
   render() {
-    let stockCards = [];
-    this.state.stocks.forEach(stock => {
-      stockCards.push(
-        <StockCard stock={stock} key={stock.symbol}></StockCard>
-      );
-    });
-
     return (
-      <div>
+      <Router>
         <Header
           isLoggedIn={!!this.state.username}
           firstName={this.state.firstName}
           lastName={this.state.lastName}>
         </Header>
-        <div>
-          <CardColumns className="p-3">
-            {stockCards}
-          </CardColumns>
-        </div>
-      </div>
-    )
+        <Container fluid="true">
+          <Switch>
+            <Route path="/stock/:symbol">
+              <StockDetail></StockDetail>
+            </Route>
+            <Route path="/">
+              <StockCardGroup stocks={this.state.stocks}></StockCardGroup>
+            </Route>
+          </Switch>
+        </Container>
+      </Router>
+    );
   }
 }
 

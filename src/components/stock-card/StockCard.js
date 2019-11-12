@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 class StockCard extends React.Component {
 
@@ -63,7 +64,7 @@ class StockCard extends React.Component {
                             </tr>
                             <tr>
                                 <td colSpan="2">
-                                    <Button>View Details</Button>
+                                    <Button to={'/stock/' + this.props.stock.symbol} as={Link}>View Details</Button>
                                 </td>
                             </tr>
                         </tbody>
