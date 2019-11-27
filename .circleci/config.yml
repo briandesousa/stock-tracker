@@ -29,13 +29,12 @@ jobs:
           command: npm test
 
   deploy-to-azure:
-    working_directory: ~/stock-tracker
     executor: azure-cli/azure-docker
     steps:
       - azure-cli/login-with-service-principal
       - run:
-          name: az resource list
-          command: List resources of tenant stored as 'AZURE_SP_TENANT' env var
+          name: List resources of tenant stored as 'AZURE_SP_TENANT' env var
+          command: az resource list
  
 workflows:
   version: 2
