@@ -1,4 +1,8 @@
-version: 2
+version: 2.1
+
+orbs:
+  azure-cli: circleci/azure-cli@1.1.0
+
 jobs:
   build:
     working_directory: ~/stock-tracker
@@ -23,23 +27,25 @@ jobs:
       - run:
           name: test
           command: npm test
-  
-  deploy:
+
+  deploy-to-azure:
     working_directory: ~/stock-tracker
-    docker:
-      - image: circleci/node:12.12
+    executor: azure-cli/default
     steps:
+      - azure-cli/install
+      - azure-cli/login-with-user
       - run:
-          name: do-deploy
-          command: 'echo "deploying..."'
+          name: az resource list
+          command: List resources of tenant stored as 'AZURE_TENANT' env var
  
 workflows:
   version: 2
-  build_deploy:
+  build-and-deploy:
     jobs:
       - build
-      - deploy:
+      - deploy-to-azure:
           requires:
             - build
-
-
+          filters:
+            branches:
+              only: master
