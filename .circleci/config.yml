@@ -30,13 +30,12 @@ jobs:
 
   deploy-to-azure:
     working_directory: ~/stock-tracker
-    executor: azure-cli/default
+    executor: azure-cli/azure-docker
     steps:
-      - azure-cli/install
-      - azure-cli/login-with-user
+      - azure-cli/login-with-service-principal
       - run:
           name: az resource list
-          command: List resources of tenant stored as 'AZURE_TENANT' env var
+          command: List resources of tenant stored as 'AZURE_SP_TENANT' env var
  
 workflows:
   version: 2
